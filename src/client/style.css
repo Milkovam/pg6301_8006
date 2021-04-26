@@ -5,6 +5,17 @@
 html {
     background-color:gray;
 }
+
+body{
+    margin: 0;
+}
+
+#app{
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height:100vh;
+}
+
 .btn-primary{
     background-color: #4CAF50;
     border: none;
@@ -13,4 +24,23 @@ html {
     text-align: center;
     text-decoration: none;
     display: inline-block;
+}
+
+header{
+    background:green;
+}
+
+main{
+    background:red;
+    overflow-y: auto;
+}
+
+
+footer form  {
+    display:flex;
+    align-items: stretch;
+}
+
+footer form input{
+    flex:1;
 }

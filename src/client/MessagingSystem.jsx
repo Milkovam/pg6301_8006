@@ -16,8 +16,19 @@ export function MessagingSystem({loadMessaging}) {
     }
     return (
 
-        <div><h1>Messaging</h1>
-        </div>
+       <>
+           <header><h1>Welcome to chat app</h1> </header>
+           <main> <div id="messageFelt">
+
+           </div>
+           </main>
+           <footer>
+               <form>
+                   <input type="text" autoFocus={true}/>
+                   <button>Submit</button>
+               </form>
+           </footer>
+           </>
 
     );
 }
