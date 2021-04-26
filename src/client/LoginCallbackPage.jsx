@@ -12,6 +12,7 @@ export function LoginCallbackPage({onAccessToken}) {
 
     useEffect(() => {
         const { access_token } =hash;
+
         onAccessToken(access_token);
         history.push("/");
     },[]);

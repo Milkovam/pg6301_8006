@@ -18,6 +18,7 @@ export function ProfilePage({loadProfile}) {
     return(
         <div> <h1>Profile</h1>
     <div>{data.name}</div>
+            <div>{data.email}</div>
         </div>
         );
 }

@@ -4,6 +4,7 @@ import {fetchJSON} from "./http";
 export function LoginPage({identityProvider}) {
     const {discoveryURL,client_id} = identityProvider;
 
+
     async function handleLogin() {
         const {authorization_endpoint} = await fetchJSON(discoveryURL);
         const params = {
