@@ -57,9 +57,15 @@ app.use((req,res,next) => {
 });
 
 const wsServer =new ws.Server({noServer:true});
+const sockets =[];
 wsServer.on("connection", (socket) => {
     console.log("Client connected");
-    socket.on("message", (message) => socket.send("message from server: " + message));
+    sockets.push(socket);
+    socket.on("message", (message) => {
+        for (const socket of sockets) {
+            socket.send("message from server: " + message)
+        }
+    });
 });
 
 const server=app.listen(3000, () => {
