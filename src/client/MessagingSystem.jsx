@@ -1,9 +1,8 @@
 import * as React from "react";
 import {useLoading} from "./useLoading";
-import { Link} from "react-router-dom";
 
-export function ProfilePage({loadProfile}) {
-    const {loading, error, data} = useLoading(async () => await loadProfile());
+export function MessagingSystem({loadMessaging}) {
+    const {loading, error} = useLoading(async () => await loadMessaging());
 
     if (loading) {
         return <div>...Loading...</div>;
@@ -17,16 +16,11 @@ export function ProfilePage({loadProfile}) {
     }
     return (
 
-        <div><h1>Profile Page</h1>
-            <div>{data.name}</div>
-            <div>{data.email}</div>
-
-            <Link to="/messaging">Go to our messaging system</Link>
+        <div><h1>Messaging</h1>
         </div>
 
     );
 }
-
 
 
 

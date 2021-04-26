@@ -39,6 +39,13 @@ app.get("/api/profile", async (req,res) => {
     return res.json(req.userinfo);
 
 });
+
+app.get("/api/messaging", async (req,res)=> {
+    if(!req.userinfo){
+        return res.send(401);
+    }
+    return res.json(req.userinfo);
+});
 app.use(express.static(path.resolve(__dirname,"..","..","dist")));
 app.use((req,res,next) => {
     if (req.method ==="GET" && !req.path.startsWith("/api")){

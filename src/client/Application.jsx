@@ -6,10 +6,12 @@ import {ProfilePage} from "./ProfilePage";
 import {fetchJSON} from "./http";
 import {LoginPage} from "./LoginPage";
 import {LoginCallbackPage} from "./LoginCallbackPage";
+import {MessagingSystem} from "./MessagingSystem";
 
 
 export function Application(){
     const [access_token,setAccess_token]=useState();
+
 
     const googleIdentityProvider = {
         discoveryURL: "https://accounts.google.com/.well-known/openid-configuration",
@@ -25,6 +27,13 @@ export function Application(){
         });
    }
 
+    async function loadMessaging() {
+        return fetchJSON ("/api/messaging", {
+            headers: {
+                ...(access_token ? { Authorization: `Bearer ${access_token}` } : {}),
+            },
+        });
+    }
    return (
        <BrowserRouter>
            <Switch>
@@ -42,7 +51,11 @@ export function Application(){
                    <LoginPage identityProvider={googleIdentityProvider}/>
                </Route>
                <Route path={"/login/callback"}>
-                   <LoginCallbackPage identityProvider={googleIdentityProvider} onAccessToken={(access_token) => setAccess_token(access_token)}/>
+                   <LoginCallbackPage identityProvider={googleIdentityProvider}
+                                      onAccessToken={(access_token) => setAccess_token(access_token)}/>
+               </Route>
+               <Route path={"/messaging"}>
+                   <MessagingSystem loadMessaging={loadMessaging}/>
                </Route>
                <Route>
                    <h1>Not Found</h1>
