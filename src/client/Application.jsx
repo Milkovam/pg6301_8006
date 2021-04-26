@@ -5,6 +5,7 @@ import {Route, Switch} from "react-router";
 import {ProfilePage} from "./ProfilePage";
 import {fetchJSON} from "./http";
 import {LoginPage} from "./LoginPage";
+import {LoginCallbackPage} from "./LoginCallbackPage";
 
 
 export function Application(){
@@ -16,13 +17,13 @@ export function Application(){
 
     };
 
-    function loadProfile() {
+   async function loadProfile() {
         return fetchJSON ("/api/profile", {
             headers: {
-            ...(access_token ? {Authorization: `Bearer ${access_token}` } :{}),
+                ...(access_token ? { Authorization: `Bearer ${access_token}` } : {}),
             },
         });
-    }
+   }
 
    return (
        <BrowserRouter>
@@ -41,7 +42,7 @@ export function Application(){
                    <LoginPage identityProvider={googleIdentityProvider}/>
                </Route>
                <Route path={"/login/callback"}>
-                   <h1>Login callback</h1>
+                   <LoginCallbackPage identityProvider={googleIdentityProvider} onAccessToken={(access_token) => setAccess_token(access_token)}/>
                </Route>
                <Route>
                    <h1>Not Found</h1>

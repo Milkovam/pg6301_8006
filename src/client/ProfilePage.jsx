@@ -1,6 +1,7 @@
 import * as React from "react";
 import {useLoading} from "./useLoading";
 
+
 export function ProfilePage({loadProfile}) {
     const {loading,error,data} =useLoading(async() => await loadProfile());
 
@@ -16,7 +17,7 @@ export function ProfilePage({loadProfile}) {
     }
     return(
         <div> <h1>Profile</h1>
-    <div>{data.username}
-    </div>
+    <div>{data.username}</div>
         </div>
-    );}
+        );
+}
