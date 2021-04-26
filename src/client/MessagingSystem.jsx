@@ -18,7 +18,7 @@ export function MessagingSystem({loadMessaging}) {
         };
         ws.onmessage = (event) => {
             console.log("from server", event);
-            setMessageFelt ([... messageFelt,event.data]);
+            setMessageFelt ((messageFelt) =>[... messageFelt,event.data]);
         };
         ws.onclose =(event) => {
             console.log("close", event);
