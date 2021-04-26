@@ -21,7 +21,8 @@ export function ProfilePage({loadProfile}) {
             <div>{data.name}</div>
             <div>{data.email}</div>
 
-            <Link to="/messaging">Go to our messaging system</Link>
+            <Link to="/messaging" className="btn btn-primary"> Go to our messaging system</Link>
+
         </div>
 
     );
