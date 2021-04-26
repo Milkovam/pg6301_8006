@@ -2,6 +2,7 @@
 const express=require("express");
 const path =require("path");
 const fetch=require("node-fetch");
+const ws =require("ws");
 
 const app =express();
 
@@ -55,9 +56,19 @@ app.use((req,res,next) => {
     next();
 });
 
+const wsServer =new ws.Server({noServer:true});
+wsServer.on("connection", (socket) => {
+    console.log("Client connected");
+    socket.on("message", (message) => socket.send("message from server: " + message));
+});
 
 const server=app.listen(3000, () => {
     console.log(`Server stared on http://localhost:${server.address().port}`);
+    server.on("upgrade", (req,res,head) => {
+        wsServer.handleUpgrade(req,res,head, (socket) => {
+            wsServer.emit("connection", socket, req);
+        });
+    });
 
 
 });

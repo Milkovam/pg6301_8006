@@ -12,14 +12,15 @@ export function MessagingSystem({loadMessaging}) {
 
 
     useEffect(() => {
-        const ws =new WebSocket("ws://" + window.location);
-        ws.onopen = event => {
+        const ws =new WebSocket("ws://localhost:3000");
+        ws.onopen = (event) => {
             console.log("opened", event);
         };
-        ws.onmessage = event => {
-            console.log("message", event);
+        ws.onmessage = (event) => {
+            console.log("from server", event);
+            setMessageFelt ([... messageFelt,event.data]);
         };
-        ws.onmessage = event => {
+        ws.onclose =(event) => {
             console.log("close", event);
         };
         setWs(ws);
@@ -27,7 +28,6 @@ export function MessagingSystem({loadMessaging}) {
 
     function handleSubmitMessage(e) {
         e.preventDefault();
-        setMessageFelt ([... messageFelt,message]);
         ws.send(message);
         setMessage("");
 
