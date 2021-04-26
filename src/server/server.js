@@ -15,23 +15,28 @@ async function fetchJSON(url, options) {
     return await res.json();
 }
 
+app.use(async (req,res, next) => {
+    const Authorization = req.header("Authorization");
+    if (Authorization) {
+        const {userinfo_endpoint} = await fetchJSON(discoveryURL);
+        req.userinfo = await fetchJSON(userinfo_endpoint, {
+            headers: {
+                Authorization,
+            },
+        });
+
+    }
+next();
+});
+
 
 app.get("/api/profile", async (req,res) => {
-    const authorization = req.header("Authorization");
-    if(!authorization){
+
+    if(!req.userinfo){
         return res.send(401);
     }
 
-    const {userinfo_endpoint} = await fetchJSON(discoveryURL);
-    const userinfo= await fetchJSON (userinfo_endpoint, {
-        headers: {
-            Authorization: authorization,
-        },
-    });
-
-    console.log(userinfo);
-
-    return res.json(userinfo);
+    return res.json(req.userinfo);
 
 });
 app.use(express.static(path.resolve(__dirname,"..","..","dist")));
