@@ -1,19 +1,30 @@
 :root {
     background-color: gray;
+    align-items:center;
+
 }
 
+* {
+    box-sizing: border-box;
+}
 html {
     background-color:gray;
 }
 
 body{
     margin: 0;
+    height: 100%;
+
+
+
 }
 
 #app{
     display: grid;
     grid-template-rows: auto 1fr auto;
-    height:100vh;
+    height: 100vh;
+
+
 }
 
 .btn-primary{
@@ -24,23 +35,88 @@ body{
     text-align: center;
     text-decoration: none;
     display: inline-block;
+
 }
 
 header{
-    background:green;
+    justify-content: space-between;
+    padding: 10px 10px;
+    border-bottom: 2px solid gray;
+    background: whitesmoke;
+    color: gray;
+    text-align:center;
+
+
 }
 
+
 main{
-    background:red;
+background: linear-gradient(150deg, whitesmoke 20%, lightgray 80%);
     overflow-y: auto;
+
+
+
 }
+
+#messageFelt {
+    text-align: left;
+    padding-left: 17%;
+}
+
+#sidebar{
+
+    height: 100%;
+    position: fixed;
+    top:0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    width:10em;
+    background:blue;
+    padding-top: 12.3%;
+}
+
+
+.btn-secondary{
+    background-color: white;
+    border: none;
+    color: blue;
+    padding: 20px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: block; }
+
+
+.btn-secondary:hover{
+    background-color: yellow;
+
+}
+
 
 
 footer form  {
-    display:flex;
     align-items: stretch;
+    display:flex;
+    height:60px;
+
+
+
 }
 
+#sendMsg{
+    background:#3782fa;
+    width:20%;
+
+}
+
+
 footer form input{
+
+  display:flex;
     flex:1;
+    text-align:center;
+
+
+
 }
